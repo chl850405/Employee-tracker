@@ -34,7 +34,7 @@ const promptUser = () => {
               "View employees by department", 
               "Delete a department", 
               "Delete a role", 
-              "Delete a employee",
+              "Delete an employee",
               "View the total utilized budget of a department"
             ]
 },
@@ -50,21 +50,21 @@ const promptUser = () => {
       viewRoles()
     }
     
-    // if(option === "View all employees") {
-    //   viewEmployees()
-    // }
+    if(option === "View all employees") {
+      viewEmployees()
+    }
 
     if(option === "Add a department") {
       addDepartment()
     }
 
-    // if(option === "Add a role") {
-    //   addRole()
-    // }
+    if(option === "Add a role") {
+      addRole()
+    }
     
-    // if(option === "Add an employee") {
-    //   addEmployee()
-    // }
+    if(option === "Add an employee") {
+      addEmployee()
+    }
     
   //   if(option === "Update an employee role") {
   //     updateRole()
@@ -88,6 +88,10 @@ const promptUser = () => {
     
     if(option === "Delete a role") {
       deleteRole()
+    }
+
+    if(option === "Delete an employee") {
+      deleteEmployee()
     }
   //   if(option === "View the total utilized budget of a department") {
   //     viewBudget()
@@ -117,16 +121,16 @@ connection.query(sql, (err, res) => {
   })
 }
 
-//   viewEmployees = () => {
-//    //get all Employees
-// const sql = `SELECT * FROM employee`;
-// connection.query(sql, (err, res) => { 
-//   if (err) throw err;
+  viewEmployees = () => {
+   //get all Employees
+const sql = `SELECT * FROM employee`;
+connection.query(sql, (err, res) => { 
+  if (err) throw err;
     
-//       console.table(res);
-//       promptUser();
-//   })
-// }
+      console.table(res);
+      promptUser();
+  })
+}
 
   addDepartment = () => {
     inquirer.prompt([
@@ -149,47 +153,50 @@ connection.query(sql, (err, res) => {
     });
   }
 
-  // addRole = () => {
-  //   inquirer.prompt([
-  //     {
-  //       type:'input',
-  //       name:'role',
-  //       message:'What role would you like to add?',  
-  //     }
-  //   ])
-  //   .then(answer => {
-  //   const {role} = answer
-  //   const sql = ` INSERT INTO role (name)
-  //   VALUES ('${role}');`;
-  //   connection.query(sql, (err, res) => { 
-  //     if (err) throw err;
+  addRole = () => {
+    inquirer.prompt([
+      {
+        type:'input',
+        name:'role',
+        message:'What role would you like to add?',  
+      }
+    ])
+    .then(answer => {
+    const {role} = answer
+    const sql = ` INSERT INTO role (title)
+    VALUES ('${role}');`;
+    connection.query(sql, (err, res) => { 
+      if (err) throw err;
         
-  //         console.table(res);
-  //         promptUser();
-  //     })
-  //   });
-  // }
+          console.table(res);
+          promptUser();
+      })
+    });
+  }
 
-  // addEmployee = () => {
-  // inquirer.prompt([
-  //   {
-  //     type:'input',
-  //     name:'employee',
-  //     message:'What employee would you like to add?',  
-  //   }
-  // ])
-  // .then(answer => {
-  // const {employee} = answer
-  // const sql = ` INSERT INTO employee (name)
-  // VALUES ('${employee}');`;
-  // connection.query(sql, (err, res) => { 
-  //   if (err) throw err;
+  addEmployee = () => { 
+  inquirer.prompt([
+    {
+      type:'input',
+      name:'employee',
+      message:'What employee would you like to add?',  
+    }
+  ])
+  .then(answer => {
+  // const myArray = answer.split(",");
+  const employeeFirstName= answer['employee']
+  console.log(employeeFirstName)
+  // const {employeeLastName} = myArray[1]
+  const sql = ` INSERT INTO employee (first_name, last_name)
+  VALUES ('${employeeFirstName}', '${employeeFirstName}');`;
+  connection.query(sql, (err, res) => { 
+    if (err) throw err;
       
-  //       console.table(res);
-  //       promptUser();
-  //   })
-  // });
-  // }
+        console.table(res);
+        promptUser();
+    })
+  });
+  }
 
 //   updateManager = () => {
 //     connection.promise().query("SELECT 1")
@@ -263,6 +270,7 @@ connection.query(sql, (err, res) => {
   };
 
   deleteRole = () => {
+
      const sql = `SELECT * FROM role`;
   connection.query(sql, (err, res) => { 
     if (err) throw err;
@@ -290,7 +298,7 @@ connection.query(sql, (err, res) => {
         })
       });
   });
-  
+}
 
   deleteEmployee = () => {
     const sql = `SELECT * FROM employee`;
@@ -306,7 +314,7 @@ connection.query(sql, (err, res) => {
         inquirer.prompt([{
           type:'list',
           name:'option',
-          message:'Which employee would you like to delete?',
+          message:'Which employee id would you like to delete?',
           choices: employeeChoices
         }])
       .then(answer => {
@@ -314,14 +322,14 @@ connection.query(sql, (err, res) => {
         const sql = `DELETE FROM employee WHERE id = ${option}`; 
         connection.query(sql, (err, res) => { 
           if (err) throw err
-
+          
               console.table(res);
               promptUser();
         })
       });
     });
   }
-}
+  
 //   viewBudget = () => {
 //     console.log(viewBudget);
 //   }
