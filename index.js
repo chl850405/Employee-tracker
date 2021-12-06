@@ -66,13 +66,13 @@ const promptUser = () => {
       addEmployee()
     }
     
-  //   if(option === "Update an employee role") {
-  //     updateRole()
-  //   }
+    if(option === "Update an employee role") {
+      updateRole()
+    }
     
-  //   if(option === "Update employee managers") {
-  //     updateManager()
-  //   }
+    if(option === "Update employee managers") {
+      updateManager()
+    }
     
   //   if(option === "View employees by manager") {
   //     emoployeeManager()
@@ -107,7 +107,7 @@ veiwDepartments = () => {
     if (err) throw err;
       
         console.table(res);
-        promptUser();
+        promptUser(); 
     })
 }
 viewRoles = () => {
@@ -198,14 +198,28 @@ connection.query(sql, (err, res) => {
   });
   }
 
-//   updateManager = () => {
-//     connection.promise().query("SELECT 1")
-//     .then( ([rows,fields]) => {
-//       console.log(rows);
-//     })
-//     .catch(console.log)
-//     .then( () => con.end());
-//   }
+  updateManager = () => {
+    inquirer.prompt([
+      {
+        type:'list',
+        name:'option',
+        message:
+        "Which employee's manager would you like to update?",
+        choices: employeeChoices  
+      },
+    ])
+    .then(answer => {
+    const {role } = answer
+    const sql = ` INSERT INTO role (title)
+    VALUES ('${role}');`;
+    connection.query(sql, (err, res) => { 
+      if (err) throw err;
+        
+          console.table(res);
+          promptUser();
+      })
+    });
+  }
 
 //   employeeByManager = () =>{
 //     const sql = `SELECT * FROM WHERE id = ?`;
