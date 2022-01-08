@@ -1,19 +1,8 @@
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
 require('console.table');
 
 //connection to mysql
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'P1nkh41r',
-  database: 'employeetracker'
-});
-
-connection.connect(err => {
-  if (err) throw err;
-
-});
+const connection = require("./config/connection")
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -103,7 +92,7 @@ const promptUser = () => {
 veiwDepartments = () => {
   //get all departments
   const sql = `SELECT * FROM department`;
-  connection.query(sql, (err, res) => { 
+  connection(sql, (err, res) => { 
     if (err) throw err;
       
         console.table(res);
@@ -113,7 +102,7 @@ veiwDepartments = () => {
 viewRoles = () => {
     //get all role
 const sql = `SELECT * FROM role`;
-connection.query(sql, (err, res) => { 
+connection(sql, (err, res) => { 
   if (err) throw err;
     
       console.table(res);
@@ -124,7 +113,7 @@ connection.query(sql, (err, res) => {
   viewEmployees = () => {
    //get all Employees
 const sql = `SELECT * FROM employee`;
-connection.query(sql, (err, res) => { 
+connection(sql, (err, res) => { 
   if (err) throw err;
     
       console.table(res);
@@ -144,7 +133,7 @@ connection.query(sql, (err, res) => {
     const {department} = answer
     const sql = ` INSERT INTO department (name)
     VALUES ('${department}');`;
-    connection.query(sql, (err, res) => { 
+    connection(sql, (err, res) => { 
       if (err) throw err;
         
           console.table(res);
@@ -165,7 +154,7 @@ connection.query(sql, (err, res) => {
     const {role} = answer
     const sql = ` INSERT INTO role (title)
     VALUES ('${role}');`;
-    connection.query(sql, (err, res) => { 
+    connection(sql, (err, res) => { 
       if (err) throw err;
         
           console.table(res);
@@ -189,7 +178,7 @@ connection.query(sql, (err, res) => {
   // const {employeeLastName} = myArray[1]
   const sql = ` INSERT INTO employee (first_name, last_name)
   VALUES ('${employeeFirstName}', '${employeeFirstName}');`;
-  connection.query(sql, (err, res) => { 
+  connection(sql, (err, res) => { 
     if (err) throw err;
       
         console.table(res);
@@ -212,7 +201,7 @@ connection.query(sql, (err, res) => {
     const {role } = answer
     const sql = ` INSERT INTO role (title)
     VALUES ('${role}');`;
-    connection.query(sql, (err, res) => { 
+    connection(sql, (err, res) => { 
       if (err) throw err;
         
           console.table(res);
@@ -349,3 +338,4 @@ connection.query(sql, (err, res) => {
 //   }
 
 promptUser()
+

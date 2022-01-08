@@ -1,41 +1,39 @@
-# Employee-tracker
+# Employee-tracker (SQL)
 
-AS A business owner
-I WANT to be able to view and manage the departments, roles, and employees in my company
-SO THAT I can organize and plan my business
+# E-commerce Back End Starter Code# E-Commerce Backend (Object-Relational Mapping)
+![Github licence](http://img.shields.io/badge/license-MIT-blue.svg)
 
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-    * start()
+## Description 
+This project is the creation of the back end for an e-commerce site. This application used Express.js API and Sequelize to interact with a MySQL database. This application displays creation of database using mySQL with models and associations. Then demonstrates the API Routes to perform RESTful CRUD operations displayed in my walk through videos.
 
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
 
-Bonus
-See if you can add some additional functionality to your application, such as the ability to do the following:
+## Installation 
+The user should clone the repository from GitHub. This application requires Node.js, Express.js, and Sequelize. To connect to the database run `mysql -u root -p` and enter password from .env file. Then source the schema.sql. To seed the file run `npm run seed`. Finally to connect to the server run `npm start`. 
 
-Update employee managers.
+## Usage 
+This application will allow users to view, add, edit, and delete categories, products, and tags.
 
-View employees by manager.
+View video to see MySQL walk through via [Screencastify](https://drive.google.com/file/d/1Em_LQH1I-NgwqmKpxgeBkXy71hx4clSp/view)<br>
+View video to walk through of the API routes. [Screencastify](https://drive.google.com/file/d/19HxHUsCz4v2iva7JGcpbhywtCO3b4wU0/view)<br>
+View video to see Insomnia walk through via [Screencastify]()
 
-View employees by department.
+## License 
+This project is license under MIT
 
-Delete departments, roles, and employees.
+## Contributing 
+Contributors should read the installation section. 
 
-View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
+## Tests
+There are no tests for this application. 
 
+## Questions
+If you have any questions about this projects, please contact me directly at christimarchetti@gmail.com. You can view more of my projects at https://github.com/chl850405.
 
 ![the mockup](./images/employee-tracker.png)#Employee-Tracker
