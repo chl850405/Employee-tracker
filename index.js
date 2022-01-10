@@ -1,8 +1,20 @@
+const mysql= require('mysql2')
 const inquirer = require('inquirer');
 require('console.table');
 
 //connection to mysql
-const connection = require("./config/connection")
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  password: 'P1nkh41r',
+  database: 'employee_tracker_db'
+});
+
+connection.connect(err => {
+  if (err) throw err;
+
+});
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -63,9 +75,9 @@ const promptUser = () => {
       updateManager()
     }
     
-  //   if(option === "View employees by manager") {
-  //     emoployeeManager()
-  //   }
+    if(option === "View employees by manager") {
+      emoployeeManager()
+    }
     
   //   if(option === "View employees by department") {
   //     employeeDepartment()
@@ -92,7 +104,7 @@ const promptUser = () => {
 veiwDepartments = () => {
   //get all departments
   const sql = `SELECT * FROM department`;
-  connection(sql, (err, res) => { 
+  connection.query(sql, (err, res) => { 
     if (err) throw err;
       
         console.table(res);
@@ -102,7 +114,7 @@ veiwDepartments = () => {
 viewRoles = () => {
     //get all role
 const sql = `SELECT * FROM role`;
-connection(sql, (err, res) => { 
+connection.query(sql, (err, res) => { 
   if (err) throw err;
     
       console.table(res);
@@ -113,7 +125,7 @@ connection(sql, (err, res) => {
   viewEmployees = () => {
    //get all Employees
 const sql = `SELECT * FROM employee`;
-connection(sql, (err, res) => { 
+connection.query(sql, (err, res) => { 
   if (err) throw err;
     
       console.table(res);
