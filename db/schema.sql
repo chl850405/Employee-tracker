@@ -3,6 +3,7 @@ CREATE DATABASE employee_tracker_db;
 
 USE employee_tracker_db;
 
+
 CREATE TABLE department(
 id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) NOT NULL
@@ -15,7 +16,7 @@ title VARCHAR(30) NOT NULL,
 salary DECIMAL (19,4),
 department_id INTEGER UNSIGNED NOT NULL,
 INDEX dep_ind (department_id),
-CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE SET NULL
+CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 );
 
 CREATE TABLE employee
