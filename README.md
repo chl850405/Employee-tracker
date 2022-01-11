@@ -19,7 +19,7 @@ This application will allow users to view, add, and delete employees, department
 
 ![the mockup](./images/employee-tracker.png)#Employee-Tracker
 
-View video to see MySQL walk through via [Screencastify]()<br>
+View video to see MySQL walk through via [Screencastify](https://drive.google.com/file/d/1c9rxUB9DxJ4mWzRbEQmWJuaRkWyJ850i/view)<br>
 
 ## License 
 This project has no license
