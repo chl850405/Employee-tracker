@@ -1,7 +1,7 @@
 # Employee-tracker (SQL)
 
 ## Description 
-This project is the creation of MySQL. This application used Inquirer and console.table to interact with a MySQL database. This application displays creation of database using mySQL with models and associations. 
+This project is the creation of MySQL to assist in employee involvement with a company. This application used Inquirer and console.table to interact with a MySQL database. This application displays creation of database using MYSQL with models and associations. 
 
 ## Table of Contents
 * [Installation](#installation)
